@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -21,6 +23,7 @@ public class HikeAdapter extends RecyclerView.Adapter<HikeAdapter.MyViewHolder> 
     Context context;
     Activity activity;
     ArrayList hike_id, hike_location, hike_date, hike_parking, hike_length, hike_difficulty, hike_desc;
+    Animation translate_anim;
 
     public HikeAdapter(Activity activity, Context context, ArrayList hike_id, ArrayList hike_location, ArrayList hike_date, ArrayList hike_parking, ArrayList hike_length, ArrayList hike_difficulty, ArrayList hike_desc) {
         this.activity = activity;
@@ -87,6 +90,9 @@ public class HikeAdapter extends RecyclerView.Adapter<HikeAdapter.MyViewHolder> 
             hike_difficulty_txt = itemView.findViewById((R.id.hike_difficulty_txt));
             hike_desc_txt = itemView.findViewById((R.id.hike_desc_txt));
             dataLayout = itemView.findViewById((R.id.dataLayout));
+            //Animate Recyclerview
+            translate_anim = AnimationUtils.loadAnimation(context, R.anim.translate_anim);
+            dataLayout.setAnimation(translate_anim);
         }
     }
 }

@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
 
         add_button = findViewById(R.id.add_button);
         view_data_button = findViewById(R.id.view_data_button);
+        setTitle("Hiking App");
 
         add_button.setOnClickListener(new View.OnClickListener() {
             @Override

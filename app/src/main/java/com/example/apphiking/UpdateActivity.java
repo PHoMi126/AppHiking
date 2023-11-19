@@ -22,14 +22,9 @@ public class UpdateActivity extends AppCompatActivity {
     RadioButton parking_choice, difficulty_choice;
     String id, location, date, parking, length, difficulty, desc;
 
-    String yes = "Yes";
-    String no = "No";
-    String newbie = "Newbie";
-    String experienced = "Experienced";
-    String expert = "Expert";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTitle("Make Change");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update);
 
@@ -47,6 +42,7 @@ public class UpdateActivity extends AppCompatActivity {
         update_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                setTitle("Make Change");
                 int selectedIdParking = parking_radioGroup.getCheckedRadioButtonId();
                 int selectedIdDiff = difficulty_radioGroup.getCheckedRadioButtonId();
 
@@ -84,20 +80,6 @@ public class UpdateActivity extends AppCompatActivity {
             length = getIntent().getStringExtra("length");
             difficulty = getIntent().getStringExtra("difficulty");
             desc = getIntent().getStringExtra("desc");
-
-            if(date.trim().equals(yes)) {
-                parking_radioGroup.check(R.id.radioButton_yes_update);
-            } else if(date.trim().equals(no)) {
-                parking_radioGroup.check(R.id.radioButton_no_update);
-            }
-
-            if(difficulty.trim().equals(newbie)) {
-                difficulty_radioGroup.check(R.id.radioButton_newbie_update);
-            } else if(difficulty.trim().equals(experienced)) {
-                difficulty_radioGroup.check(R.id.radioButton_experienced_update);
-            } else if(difficulty.trim().equals(expert)) {
-                difficulty_radioGroup.check(R.id.radioButton_expert_update);
-            }
 
             //Set Intent data
             location_input.setText(location);

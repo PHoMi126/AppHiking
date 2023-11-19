@@ -2,6 +2,7 @@ package com.example.apphiking;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -22,6 +23,7 @@ public class AddActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add);
+        setTitle("Create New");
 
         location_input = findViewById(R.id.location_input);
         date_input = findViewById(R.id.date_input);
@@ -34,18 +36,22 @@ public class AddActivity extends AppCompatActivity {
         add_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                DatabaseHelper myDB = new DatabaseHelper(AddActivity.this);
                 int selectedIdParking = parking_radioGroup.getCheckedRadioButtonId();
                 int selectedIdDiff = difficulty_radioGroup.getCheckedRadioButtonId();
 
-                DatabaseHelper myDB = new DatabaseHelper(AddActivity.this);
-                myDB.addHikeSession(location_input.getText().toString().trim(),
-                        date_input.getText().toString().trim(),
-                        (parking_choice = findViewById(selectedIdParking)).getText().toString().trim(),
-                        length_input.getText().toString().trim(),
-                        (difficulty_choice = findViewById(selectedIdDiff)).getText().toString().trim(),
-                        description_input.getText().toString().trim()
-                );
+                final String location = location_input.getText().toString().trim();
+                final String date = date_input.getText().toString().trim();
+                final String parking = (parking_choice = findViewById(selectedIdParking)).getText().toString().trim();
+                final String length = length_input.getText().toString().trim();
+                final String difficulty = (difficulty_choice = findViewById(selectedIdDiff)).getText().toString().trim();
+                final String description = description_input.getText().toString().trim();
+
+                myDB.addHikeSession(location, date, parking, length, difficulty, description);
+                finish();
             }
         });
     }
+
+
 }

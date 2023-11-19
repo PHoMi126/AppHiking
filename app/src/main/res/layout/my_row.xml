@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="12dp"
+    android:layout_marginBottom="6dp"
     android:id="@+id/dataLayout">
 
     <androidx.cardview.widget.CardView
@@ -15,7 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="192dp"
             android:padding="12dp"
-            android:background="#673AB7">
+            android:background="@color/black">
 
             <TextView
                 android:id="@+id/hike_id_text"

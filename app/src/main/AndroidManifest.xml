@@ -10,16 +10,19 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppHiking"
+        android:theme="@style/Theme.AppCompat.Light.DarkActionBar"
         tools:targetApi="31" >
         <activity
             android:name=".UpdateActivity"
+            android:parentActivityName=".ViewDataActivity"
             android:exported="false" />
         <activity
             android:name=".ViewDataActivity"
+            android:parentActivityName=".MainActivity"
             android:exported="false" />
         <activity
             android:name=".AddActivity"
+            android:parentActivityName=".MainActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
