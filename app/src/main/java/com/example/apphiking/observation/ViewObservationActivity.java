@@ -1,7 +1,6 @@
-package com.example.apphiking;
+package com.example.apphiking.observation;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -19,69 +18,55 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.apphiking.adapter.HikeAdapter;
-import com.example.apphiking.db.DatabaseHelper;
+import com.example.apphiking.R;
+import com.example.apphiking.ViewDataActivity;
+import com.example.apphiking.adapter.ObservationAdapter;
+import com.example.apphiking.db.ObserveDatabaseHelper;
 
 import java.util.ArrayList;
 
-public class ViewDataActivity extends AppCompatActivity {
+public class ViewObservationActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
-    DatabaseHelper myDB;
-    ArrayList<String> hike_id, hike_location, hike_date, hike_parking, hike_length, hike_difficulty, hike_desc;
-    HikeAdapter hikeAdapter;
+    ObserveDatabaseHelper oDB;
+    ArrayList<String> observe_id, observe_observation, observe_date, observe_comment;
+    ObservationAdapter observationAdapter;
     ImageView empty_imageView;
     TextView no_data;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_data);
-        setTitle("View Hikes");
+        setContentView(R.layout.activity_view_observation);
 
         recyclerView = findViewById(R.id.recyclerView);
         empty_imageView = findViewById(R.id.empty_imageView);
         no_data = findViewById(R.id.no_data);
 
-
-        myDB = new DatabaseHelper(ViewDataActivity.this);
-        hike_id = new ArrayList<>();
-        hike_location = new ArrayList<>();
-        hike_date = new ArrayList<>();
-        hike_parking = new ArrayList<>();
-        hike_length = new ArrayList<>();
-        hike_difficulty = new ArrayList<>();
-        hike_desc = new ArrayList<>();
+        oDB = new ObserveDatabaseHelper(ViewObservationActivity.this);
+        observe_id = new ArrayList<>();
+        observe_observation = new ArrayList<>();
+        observe_date = new ArrayList<>();
+        observe_comment = new ArrayList<>();
 
         storeDataInArrays();
 
-        hikeAdapter = new HikeAdapter(ViewDataActivity.this, this, hike_id, hike_location, hike_date, hike_parking, hike_length, hike_difficulty, hike_desc);
-        recyclerView.setAdapter(hikeAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(ViewDataActivity.this));
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == 0) {
-            recreate();
-        }
+        observationAdapter = new ObservationAdapter(ViewObservationActivity.this, this, observe_id, observe_observation, observe_date, observe_comment);
+        recyclerView.setAdapter(observationAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(ViewObservationActivity.this));
     }
 
     public void storeDataInArrays() {
-        Cursor cursor = myDB.readAllData();
+        Cursor cursor = oDB.readAllObservedData();
         if(cursor.getCount() == 0) {
             empty_imageView.setVisibility(View.VISIBLE);
             no_data.setVisibility(View.VISIBLE);
         } else{
             while (cursor.moveToNext()) { //Read all data from cursor
-                hike_id.add(cursor.getString(0));
-                hike_location.add(cursor.getString(1));
-                hike_date.add(cursor.getString(2));
-                hike_parking.add(cursor.getString(3));
-                hike_length.add(cursor.getString(4));
-                hike_difficulty.add(cursor.getString(5));
-                hike_desc.add(cursor.getString(6));
+                observe_id.add(cursor.getString(0));
+                observe_observation.add(cursor.getString(1));
+                observe_date.add(cursor.getString(2));
+                observe_comment.add(cursor.getString(3));
             }
             empty_imageView.setVisibility(View.GONE);
             no_data.setVisibility(View.GONE);
@@ -110,12 +95,12 @@ public class ViewDataActivity extends AppCompatActivity {
         builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                DatabaseHelper myDB = new DatabaseHelper(ViewDataActivity.this);
-                myDB.deleteAllData();
+                ObserveDatabaseHelper oDB = new ObserveDatabaseHelper(ViewObservationActivity.this);
+                oDB.deleteAllObservedData();
                 //Refresh Activity
-                Intent intent = new Intent(ViewDataActivity.this, ViewDataActivity.class);
+                Intent intent = new Intent(ViewObservationActivity.this, ViewDataActivity.class);
                 startActivity(intent);
-                Toast.makeText(ViewDataActivity.this, "Delete", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ViewObservationActivity.this, "Delete", Toast.LENGTH_SHORT).show();
                 finish();
             }
         });

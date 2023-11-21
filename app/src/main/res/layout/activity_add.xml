@@ -7,44 +7,68 @@
     android:paddingHorizontal="30dp"
     tools:context=".AddActivity">
 
-    <EditText
-        android:id="@+id/location_input"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layout_location"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:ems="10"
-        android:hint="Hike Location"
-        android:inputType="text"
-        android:minHeight="48dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/location_view" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <EditText
-        android:id="@+id/date_input"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:ems="10"
-        android:hint="Hike Date"
-        android:inputType="date"
-        android:minHeight="48dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/date_view" />
+        <EditText
+            android:id="@+id/location_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Hike Location"
+            android:inputType="text"
+            android:minHeight="48dp"
+            tools:layout_editor_absoluteX="30dp"
+            tools:layout_editor_absoluteY="32dp" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-    <EditText
-        android:id="@+id/length_input"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layout_date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:ems="10"
-        android:hint="Hike Length"
-        android:inputType="number"
-        android:minHeight="48dp"
+        android:layout_marginTop="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/length_view" />
+        app:layout_constraintTop_toBottomOf="@+id/layout_location">
+
+        <EditText
+            android:id="@+id/date_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Hike Date"
+            android:inputType="date"
+            android:minHeight="48dp"
+            tools:layout_editor_absoluteX="30dp"
+            tools:layout_editor_absoluteY="119dp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layout_length"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/parking_radioGroup">
+
+        <EditText
+            android:id="@+id/length_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Hike Length"
+            android:inputType="number"
+            android:minHeight="48dp"
+            tools:layout_editor_absoluteX="30dp"
+            tools:layout_editor_absoluteY="299dp" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <RadioGroup
         android:id="@+id/difficulty_radioGroup"
@@ -52,21 +76,23 @@
         android:layout_height="51dp"
         android:layout_marginTop="4dp"
         android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/difficulty_view"
         app:layout_constraintTop_toBottomOf="@+id/difficulty_view">
 
         <RadioButton
             android:id="@+id/radioButton_newbie"
             android:layout_width="98dp"
             android:layout_height="wrap_content"
-            android:text="Newbie" />
+            android:text="Newbie"
+            android:minHeight="48dp"
+            tools:ignore="TouchTargetSizeCheck"
+            android:checked="true"/>
 
         <RadioButton
             android:id="@+id/radioButton_experienced"
             android:layout_width="124dp"
             android:layout_height="wrap_content"
+            android:minHeight="48dp"
             android:text="Experienced" />
 
         <RadioButton
@@ -74,102 +100,63 @@
             android:layout_width="79dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:minHeight="48dp"
             android:text="Expert" />
 
     </RadioGroup>
-
-    <EditText
-        android:id="@+id/description_input"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:ems="10"
-        android:hint="Description"
-        android:inputType="text"
-        android:minHeight="48dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.266"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/description_view" />
 
     <TextView
         android:id="@+id/parking_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="12dp"
         android:text="Parking Available"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/date_input" />
+        app:layout_constraintTop_toBottomOf="@+id/layout_date" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layout_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.733"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/difficulty_radioGroup">
+
+        <EditText
+            android:id="@+id/description_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Description"
+            android:inputType="number"
+            android:minHeight="48dp"
+            tools:layout_editor_absoluteX="30dp"
+            tools:layout_editor_absoluteY="299dp" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/add_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="24dp"
         android:text="Add"
         android:textAllCaps="false"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/description_input" />
-
-    <TextView
-        android:id="@+id/location_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Location"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/date_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Date (d-m-y)"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.002"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/location_input" />
-
-    <TextView
-        android:id="@+id/length_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Length (km)"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/parking_radioGroup" />
+        app:layout_constraintTop_toBottomOf="@+id/layout_description" />
 
     <TextView
         android:id="@+id/difficulty_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="12dp"
         android:text="Difficulty"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/length_input" />
-
-    <TextView
-        android:id="@+id/description_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Description"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/difficulty_radioGroup" />
+        app:layout_constraintTop_toBottomOf="@+id/layout_length" />
 
     <RadioGroup
         android:id="@+id/parking_radioGroup"
@@ -177,21 +164,22 @@
         android:layout_height="52dp"
         android:layout_marginTop="4dp"
         android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/parking_view"
         app:layout_constraintTop_toBottomOf="@+id/parking_view">
 
         <RadioButton
             android:id="@+id/radioButton_yes"
             android:layout_width="79dp"
             android:layout_height="wrap_content"
-            android:text="Yes" />
+            android:minHeight="48dp"
+            android:text="Yes"
+            android:checked="true"/>
 
         <RadioButton
             android:id="@+id/radioButton_no"
             android:layout_width="69dp"
             android:layout_height="wrap_content"
+            android:minHeight="48dp"
             android:text="No" />
     </RadioGroup>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -24,7 +24,7 @@ public class UpdateActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setTitle("Make Change");
+        setTitle("Make Changes");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update);
 
@@ -39,10 +39,10 @@ public class UpdateActivity extends AppCompatActivity {
 
         //Call first
         getAndSetIntentData();
+
         update_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setTitle("Make Change");
                 int selectedIdParking = parking_radioGroup.getCheckedRadioButtonId();
                 int selectedIdDiff = difficulty_radioGroup.getCheckedRadioButtonId();
 

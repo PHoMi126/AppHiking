@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.apphiking.R;
 import com.example.apphiking.UpdateActivity;
+import com.example.apphiking.observation.ObservationActivity;
 
 import java.util.ArrayList;
 
@@ -54,18 +55,26 @@ public class HikeAdapter extends RecyclerView.Adapter<HikeAdapter.MyViewHolder> 
         holder.hike_length_txt.setText(String.valueOf(hike_length.get(position)));
         holder.hike_difficulty_txt.setText(String.valueOf(hike_difficulty.get(position)));
         holder.hike_desc_txt.setText(String.valueOf(hike_desc.get(position)));
+//        holder.dataLayout.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(context, UpdateActivity.class);
+//                intent.putExtra("id", String.valueOf(hike_id.get(position)));
+//                intent.putExtra("location", String.valueOf(hike_location.get(position)));
+//                intent.putExtra("date", String.valueOf(hike_date.get(position)));
+//                intent.putExtra("parking", String.valueOf(hike_parking.get(position)));
+//                intent.putExtra("length", String.valueOf(hike_length.get(position)));
+//                intent.putExtra("difficulty", String.valueOf(hike_difficulty.get(position)));
+//                intent.putExtra("desc", String.valueOf(hike_desc.get(position)));
+//                activity.startActivityForResult(intent, 1);
+//            }
+//        });
+
         holder.dataLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, UpdateActivity.class);
-                intent.putExtra("id", String.valueOf(hike_id.get(position)));
-                intent.putExtra("location", String.valueOf(hike_location.get(position)));
-                intent.putExtra("date", String.valueOf(hike_date.get(position)));
-                intent.putExtra("parking", String.valueOf(hike_parking.get(position)));
-                intent.putExtra("length", String.valueOf(hike_length.get(position)));
-                intent.putExtra("difficulty", String.valueOf(hike_difficulty.get(position)));
-                intent.putExtra("desc", String.valueOf(hike_desc.get(position)));
-                activity.startActivityForResult(intent, 1);
+                Intent intent = new Intent(context, ObservationActivity.class);
+                activity.startActivity(intent);
             }
         });
     }
