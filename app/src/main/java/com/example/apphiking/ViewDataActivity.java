@@ -98,6 +98,7 @@ public class ViewDataActivity extends AppCompatActivity {
         MenuItem item = menu.findItem(R.id.search_button);
         SearchView searchView = (SearchView) item.getActionView();
 
+        assert searchView != null;
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -106,14 +107,6 @@ public class ViewDataActivity extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                ArrayList<String> recyclerView1 = new ArrayList<>();
-                for (String lo : hike_location) {
-                    if(lo.toLowerCase().contains(newText.toLowerCase())){
-                        hike_location.add(lo);
-                    }
-                }
-                ArrayAdapter<String> adapter = new ArrayAdapter<>(ViewDataActivity.this, android.R.layout.simple_list_item_1, recyclerView1);
-                recyclerView.setAdapter(adapter);
                 return true;
             }
         });
