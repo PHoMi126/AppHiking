@@ -38,6 +38,7 @@ public class ViewObservationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_observation);
+        setTitle("Diary");
 
         recyclerView = findViewById(R.id.recyclerView);
         empty_imageView = findViewById(R.id.empty_imageView);

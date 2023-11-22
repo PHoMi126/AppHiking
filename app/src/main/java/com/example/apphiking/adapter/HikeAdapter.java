@@ -15,7 +15,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.apphiking.R;
-import com.example.apphiking.UpdateActivity;
 import com.example.apphiking.observation.ObservationActivity;
 
 import java.util.ArrayList;

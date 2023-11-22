@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.MenuItemCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -15,7 +16,9 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,7 +45,6 @@ public class ViewDataActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerView);
         empty_imageView = findViewById(R.id.empty_imageView);
         no_data = findViewById(R.id.no_data);
-
 
         myDB = new DatabaseHelper(ViewDataActivity.this);
         hike_id = new ArrayList<>();
@@ -92,6 +94,30 @@ public class ViewDataActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.my_menu, menu);
+
+        MenuItem item = menu.findItem(R.id.search_button);
+        SearchView searchView = (SearchView) item.getActionView();
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                ArrayList<String> recyclerView1 = new ArrayList<>();
+                for (String lo : hike_location) {
+                    if(lo.toLowerCase().contains(newText.toLowerCase())){
+                        hike_location.add(lo);
+                    }
+                }
+                ArrayAdapter<String> adapter = new ArrayAdapter<>(ViewDataActivity.this, android.R.layout.simple_list_item_1, recyclerView1);
+                recyclerView.setAdapter(adapter);
+                return true;
+            }
+        });
+
         return super.onCreateOptionsMenu(menu);
     }
 

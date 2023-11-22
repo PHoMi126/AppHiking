@@ -80,35 +80,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
-    public void updateData(String row_id, String location, String date, String parking, String length, String difficulty, String desc) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues cv = new ContentValues();
-
-        cv.put(COLUMN_LOCATION, location);
-        cv.put(COLUMN_DATE, date);
-        cv.put(COLUMN_PARKING, parking);
-        cv.put(COLUMN_LENGTH, length);
-        cv.put(COLUMN_DIFFICULTY, difficulty);
-        cv.put(COLUMN_DESCRIPTION, desc);
-
-        long result = db.update(TABLE_NAME, cv, COLUMN_ID + " =? ", new String[]{row_id});
-        if (result == -1) { //App failed to update data
-            Toast.makeText(context, "Failed.", Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(context, "Updated successfully!", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    public void deleteOneRow(String row_id) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        long result = db.delete(TABLE_NAME, COLUMN_ID + " =? ", new String[]{row_id});
-        if (result == -1) { //App failed to delete data
-            Toast.makeText(context, "Failed.", Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(context, "Deleted successfully!", Toast.LENGTH_SHORT).show();
-        }
-    }
-
     public void deleteAllData() {
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL("DELETE FROM " + TABLE_NAME);
