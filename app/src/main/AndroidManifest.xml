@@ -29,10 +29,6 @@
             android:parentActivityName=".ViewDataActivity"
             android:exported="false" />
         <activity
-            android:name=".UpdateActivity"
-            android:exported="false"
-            android:parentActivityName=".ViewDataActivity" />
-        <activity
             android:name=".ViewDataActivity"
             android:exported="false"
             android:parentActivityName=".MainActivity" />
