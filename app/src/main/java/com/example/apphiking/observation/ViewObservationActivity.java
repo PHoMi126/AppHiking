@@ -99,7 +99,7 @@ public class ViewObservationActivity extends AppCompatActivity {
                 ObserveDatabaseHelper oDB = new ObserveDatabaseHelper(ViewObservationActivity.this);
                 oDB.deleteAllObservedData();
                 //Refresh Activity
-                Intent intent = new Intent(ViewObservationActivity.this, ViewDataActivity.class);
+                Intent intent = new Intent(ViewObservationActivity.this, ViewObservationActivity.class);
                 startActivity(intent);
                 Toast.makeText(ViewObservationActivity.this, "Delete", Toast.LENGTH_SHORT).show();
                 finish();

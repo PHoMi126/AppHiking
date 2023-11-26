@@ -62,7 +62,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="Comments"
-            android:inputType="number"
+            android:inputType="text"
             android:minHeight="48dp"
             tools:layout_editor_absoluteX="30dp"
             tools:layout_editor_absoluteY="299dp" />

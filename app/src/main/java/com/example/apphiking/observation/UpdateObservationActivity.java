@@ -4,6 +4,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,6 +12,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.apphiking.R;
+import com.example.apphiking.ViewDataActivity;
 import com.example.apphiking.db.ObserveDatabaseHelper;
 
 public class UpdateObservationActivity extends AppCompatActivity {
@@ -82,7 +84,9 @@ public class UpdateObservationActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 ObserveDatabaseHelper oDB = new ObserveDatabaseHelper(UpdateObservationActivity.this);
+                Intent intent = new Intent(UpdateObservationActivity.this, ViewObservationActivity.class);
                 oDB.deleteOneObservedRow(id);
+                startActivity(intent);
                 finish();
             }
         });
